@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kopi Djoe</title>
+    <style>
+      :root {
+        --bg: #120f0d;
+        --surface: #1d1714;
+        --card: rgba(255, 255, 255, 0.05);
+        --text: #f7f2ea;
+        --muted: #d5c9b6;
+        --accent: #e3b451;
+        --border: rgba(255, 255, 255, 0.12);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: Inter, Arial, sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(circle at top right, rgba(227, 180, 81, 0.18), transparent 20%),
+          linear-gradient(180deg, #14100d 0%, #0f0d0b 100%);
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .container {
+        width: min(1120px, calc(100% - 24px));
+        margin: 0 auto;
+      }
+
+      .header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        backdrop-filter: blur(16px);
+        background: rgba(18, 15, 13, 0.82);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .nav {
+        min-height: 74px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .brand {
+        font-weight: 800;
+        letter-spacing: 0.08em;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+        color: var(--muted);
+      }
+
+      .hero,
+      .section {
+        padding: 32px 0 56px;
+      }
+
+      .hero-grid,
+      .two-col {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 24px;
+        align-items: start;
+      }
+
+      .pill,
+      .eyebrow,
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        border-radius: 999px;
+      }
+
+      .pill {
+        padding: 10px 14px;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        margin-bottom: 14px;
+      }
+
+      .eyebrow {
+        color: var(--accent);
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        font-size: 12px;
+      }
+
+      h1,
+      h2,
+      h3 {
+        margin: 0;
+        line-height: 1.15;
+      }
+
+      h1 {
+        margin-top: 10px;
+        font-size: clamp(2.4rem, 6vw, 4.5rem);
+        max-width: 10ch;
+      }
+
+      p {
+        color: var(--muted);
+      }
+
+      .actions {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 18px;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 44px;
+        padding: 0 16px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+      }
+
+      .button.primary {
+        background: linear-gradient(135deg, var(--accent), #f8d27f);
+        color: #2b1a0d;
+        border-color: transparent;
+        font-weight: 700;
+      }
+
+      .hero-card,
+      .panel,
+      .menu-group,
+      .review-card,
+      .gallery-card,
+      .about {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 24px;
+      }
+
+      .hero-card,
+      .panel,
+      .about,
+      .menu-group,
+      .review-card {
+        padding: 18px;
+      }
+
+      .hero-art {
+        display: grid;
+        gap: 16px;
+      }
+
+      .hero-image {
+        aspect-ratio: 4 / 5;
+        border-radius: 24px;
+        overflow: hidden;
+        border: 1px solid var(--border);
+      }
+
+      .hero-image img,
+      .gallery-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+        margin-top: 20px;
+      }
+
+      .section-heading {
+        max-width: 62ch;
+        margin-bottom: 18px;
+      }
+
+      .section-heading h2 {
+        margin: 8px 0 10px;
+        font-size: clamp(1.8rem, 4vw, 3rem);
+      }
+
+      .menu-layout,
+      .review-list,
+      .gallery-grid {
+        display: grid;
+        gap: 16px;
+      }
+
+      .menu-items {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 12px;
+      }
+
+      .menu-item {
+        padding: 14px;
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .menu-name {
+        font-weight: 600;
+        color: var(--text);
+      }
+
+      .menu-note {
+        margin: 4px 0 0;
+        font-size: 13px;
+      }
+
+      .badge {
+        padding: 4px 10px;
+        background: linear-gradient(135deg, var(--accent), #f8d27f);
+        color: #2b1a0d;
+        font-size: 12px;
+        font-weight: 700;
+        margin-left: 8px;
+      }
+
+      .price {
+        white-space: nowrap;
+        color: #fff1c3;
+        font-weight: 700;
+      }
+
+      .hours {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .hours li {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .hours li:last-child {
+        border-bottom: 0;
+      }
+
+      .review-list {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      }
+
+      .gallery-grid {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      }
+
+      .gallery-card {
+        overflow: hidden;
+      }
+
+      .gallery-photo {
+        aspect-ratio: 4 / 5;
+      }
+
+      .gallery-copy {
+        padding: 14px 16px 18px;
+      }
+
+      .about {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 18px;
+      }
+
+      .footer {
+        padding: 0 0 30px;
+      }
+
+      .footer .container {
+        padding-top: 18px;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        color: var(--muted);
+      }
+
+      @media (max-width: 860px) {
+        .hero-grid,
+        .two-col,
+        .about,
+        .stats {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="container nav">
+        <div class="brand">KOPI DJOE</div>
+        <nav class="nav-links">
+          <a href="#beranda">Beranda</a>
+          <a href="#menu">Menu</a>
+          <a href="#lokasi">Lokasi</a>
+          <a href="#ulasan">Ulasan</a>
+          <a href="#galeri">Galeri</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section id="beranda" class="hero">
+        <div class="container hero-grid">
+          <div>
+            <div class="pill">4,9 ⭐ • 1.058 ulasan</div>
+            <div class="eyebrow">Kedai Kopi & Makanan Nusantara Modern</div>
+            <h1>Nikmati Sensasi Kopi & Makanan Favoritmu</h1>
+            <p>
+              Tempat ngopi hangat dengan menu Nusantara modern, pilihan western favorit,
+              dan minuman signature yang estetik.
+            </p>
+            <div class="actions">
+              <a class="button primary" href="#menu">Lihat Menu</a>
+              <a class="button" href="https://wa.me/6281918181814">Pesan Sekarang</a>
+            </div>
+            <p>Buka hingga pukul 22.00</p>
+
+            <div class="stats">
+              <div class="panel">
+                <h3>Menu unggulan</h3>
+                <p>Loaded Fries, Iga Hotplate, Caramello Macchiato, dan French Choco.</p>
+              </div>
+              <div class="panel">
+                <h3>Jam buka</h3>
+                <p>Setiap hari mulai 11.00, khusus Sabtu sampai 23.00.</p>
+              </div>
+              <div class="panel">
+                <h3>Lokasi</h3>
+                <p>Margonda, Depok. Mudah diakses untuk nongkrong santai.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-art">
+            <div class="hero-image">
+              <img src="public/images/gallery/cappuccino-art.jpg" alt="Cappuccino Art" />
+            </div>
+            <div class="hero-card">
+              <div class="eyebrow">Signature</div>
+              <h3 style="margin-top:8px;">Djoe's Carbana</h3>
+              <p>Kopi creamy dengan karakter manis yang lembut dan tampilan premium.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="menu" class="section">
+        <div class="container">
+          <div class="section-heading">
+            <div class="eyebrow">Menu</div>
+            <h2>Makanan dan minuman</h2>
+            <p>Daftar menu lengkap berikut sudah digabung dengan harga dan item populer.</p>
+          </div>
+          <div id="menu-layout" class="menu-layout"></div>
+        </div>
+      </section>
+
+      <section id="lokasi" class="section">
+        <div class="container two-col">
+          <div class="panel">
+            <div class="section-heading">
+              <div class="eyebrow">Lokasi & jam operasional</div>
+              <h2>Mudah ditemukan di Margonda, Depok</h2>
+            </div>
+            <p>Jl. Margonda No.488, Pondok Cina, Kec. Beji, Kota Depok, Jawa Barat 16424</p>
+            <div class="actions">
+              <a class="button primary" href="tel:081918181814">Telepon</a>
+              <a class="button" href="https://wa.me/6281918181814">WhatsApp</a>
+              <a class="button" href="https://www.google.com/maps/search/?api=1&query=JRQM%2B7F+Pondok+Cina">Rute</a>
+            </div>
+          </div>
+          <div class="panel">
+            <h3>Jam buka</h3>
+            <ul class="hours">
+              <li><span>Senin - Kamis</span><strong>11.00 - 22.00</strong></li>
+              <li><span>Jumat</span><strong>11.00 - 22.00</strong></li>
+              <li><span>Sabtu</span><strong>11.00 - 23.00</strong></li>
+              <li><span>Minggu</span><strong>11.00 - 22.00</strong></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="ulasan" class="section">
+        <div class="container">
+          <div class="section-heading">
+            <div class="eyebrow">Ulasan</div>
+            <h2>Pengalaman pengunjung</h2>
+            <p>Rating tinggi dan review positif menjadi daya tarik utama Kopi Djoe.</p>
+          </div>
+          <div class="review-list">
+            <article class="review-card">
+              <h3>DJOE</h3>
+              <p>★★★★★ • 2 minggu lalu</p>
+              <p>Tempatnya nyaman, minumannya enak, dan loaded fries-nya jadi favorit.</p>
+            </article>
+            <article class="review-card">
+              <h3>JARTURO</h3>
+              <p>★★★★★ • 1 bulan lalu</p>
+              <p>Iga hotplate dan caramello macchiato-nya mantap. Pelayanannya ramah.</p>
+            </article>
+            <article class="review-card">
+              <h3>Nadia</h3>
+              <p>★★★★★ • 3 minggu lalu</p>
+              <p>Pilihannya banyak, interiornya estetik, dan nyaman buat foto-foto.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="galeri" class="section">
+        <div class="container">
+          <div class="section-heading">
+            <div class="eyebrow">Galeri</div>
+            <h2>Foto asli menu dan suasana</h2>
+            <p>Galeri ini memakai foto yang sudah Anda upload ke website.</p>
+          </div>
+          <div class="gallery-grid">
+            <article class="gallery-card">
+              <div class="gallery-photo"><img class="gallery-image" src="public/images/gallery/red-velvet-latte.jpg" alt="Red Velvet Latte" /></div>
+              <div class="gallery-copy"><h3>Red Velvet Latte</h3><p>Minuman creamy dengan latte art yang tampil hangat dan fotogenik.</p></div>
+            </article>
+            <article class="gallery-card">
+              <div class="gallery-photo"><img class="gallery-image" src="public/images/gallery/gepuk-rempah-ricebowl.jpg" alt="Gepuk Rempah Ricebowl" /></div>
+              <div class="gallery-copy"><h3>Gepuk Rempah Ricebowl</h3><p>Ricebowl gurih pedas dengan topping daging yang kaya bumbu.</p></div>
+            </article>
+            <article class="gallery-card">
+              <div class="gallery-photo"><img class="gallery-image" src="public/images/gallery/caramello-macchiato.jpg" alt="Caramello Macchiato" /></div>
+              <div class="gallery-copy"><h3>Caramello Macchiato</h3><p>Kopi susu lembut dengan tampilan simpel dan elegan di meja kafe.</p></div>
+            </article>
+            <article class="gallery-card">
+              <div class="gallery-photo"><img class="gallery-image" src="public/images/gallery/dessert-signature.jpg" alt="Dessert Signature" /></div>
+              <div class="gallery-copy"><h3>Dessert Signature</h3><p>Sajian penutup dengan plating unik untuk melengkapi momen nongkrong.</p></div>
+            </article>
+            <article class="gallery-card">
+              <div class="gallery-photo"><img class="gallery-image" src="public/images/gallery/lychee-fizz.jpg" alt="Lychee Fizz" /></div>
+              <div class="gallery-copy"><h3>Lychee Fizz</h3><p>Minuman segar dengan sentuhan buah yang cocok untuk suasana santai.</p></div>
+            </article>
+            <article class="gallery-card">
+              <div class="gallery-photo"><img class="gallery-image" src="public/images/gallery/banana-dessert.jpg" alt="Banana Dessert" /></div>
+              <div class="gallery-copy"><h3>Banana Dessert</h3><p>Menu manis dengan topping pisang dan saus buah yang menarik perhatian.</p></div>
+            </article>
+            <article class="gallery-card">
+              <div class="gallery-photo"><img class="gallery-image" src="public/images/gallery/cappuccino-art.jpg" alt="Cappuccino Art" /></div>
+              <div class="gallery-copy"><h3>Cappuccino Art</h3><p>Kopi hangat dengan latte art yang memberi kesan premium dan nyaman.</p></div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container about">
+          <div>
+            <div class="eyebrow">Tentang</div>
+            <h2 style="margin-top:8px;">Kopi Djoe</h2>
+            <p>
+              Kopi Djoe adalah kedai kopi dan makanan yang menyajikan perpaduan rasa
+              Nusantara dan western. Menu unggulannya meliputi Djoe's Carbana,
+              Caramello Macchiato, Loaded Fries, dan Iga Hotplate.
+            </p>
+          </div>
+          <div class="panel">
+            <h3>Info terbaru</h3>
+            <p>Buka hingga pukul 22.00. Diperbarui 9 minggu lalu.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">© 2026 Kopi Djoe</div>
+    </footer>
+
+    <script>
+      const data = {
+        categories: [
+          {
+            label: "Makanan",
+            groups: [
+              {
+                name: "Snacks",
+                items: [
+                  { name: "Loaded Fries", featured: true, price: "39K" },
+                  { name: "Cheese Tortilla Chips", price: "32K" },
+                  { name: "Onion Rings", price: "26K" },
+                  { name: "Jamur Crispy", price: "23K" },
+                  { name: "Chicken Tenders", price: "32K" },
+                  { name: "Tempe Mendoan", price: "24K" },
+                  { name: "Beef Quesadilla", price: "45K" },
+                  { name: "Mix Bites", featured: true, price: "47K" }
+                ]
+              },
+              {
+                name: "Ricebowls",
+                items: [
+                  { name: "Crispy Chicken Fillet Matah", price: "35K" },
+                  { name: "Crispy Chicken Fillet Madu", featured: true, price: "35K" },
+                  { name: "Iga Sambal Penyet", featured: true, price: "42K" },
+                  { name: "Iga Sambal Kecombrang", price: "42K" },
+                  { name: "Gepuk Rempah", featured: true, price: "40K" },
+                  { name: "Gepuk Kremes", price: "40K" },
+                  { name: "Cumi Bumbu Eyang", price: "37K" },
+                  { name: "Cumi Padang", price: "35K" },
+                  { name: "Fish Fillet Lada Hitam", price: "35K" }
+                ]
+              },
+              {
+                name: "Western",
+                items: [
+                  { name: "Iga Hotplate", featured: true, price: "59K", note: "black pepper / bbq / honey" },
+                  { name: "Crispy Chicken Hotplate", price: "45K", note: "black pepper / bbq / honey" },
+                  { name: "Fish and Chips", featured: true, price: "45K", note: "asian chilli / black pepper / honey" },
+                  { name: "El Supreme Beef Taco", featured: true, price: "47K", note: "Double" },
+                  { name: "El Classico Fish Taco", featured: true, price: "41K", note: "Double" }
+                ]
+              }
+            ]
+          },
+          {
+            label: "Minuman",
+            groups: [
+              {
+                name: "Djoe's Signature",
+                items: [
+                  { name: "Djoe's Carbana", featured: true, price: "38K" },
+                  { name: "Caramello Macchiato", featured: true, price: "37K" },
+                  { name: "Brown Sugar Shakerato", price: "37K" },
+                  { name: "Black Velvet Latte", price: "37K" },
+                  { name: "Djoe's Exotic ParTea", price: "36K" },
+                  { name: "Mermelaid Butterfly Tea", featured: true, price: "37K" }
+                ]
+              },
+              {
+                name: "Coffee",
+                items: [
+                  { name: "Espresso", price: "18K" },
+                  { name: "Americano", price: "23K" },
+                  { name: "Caffe Latte", price: "26K" },
+                  { name: "Dolce Vanilla Latte", price: "28K" },
+                  { name: "Brown Sugar Latte", featured: true, price: "28K" },
+                  { name: "Cappuccino", price: "23K" },
+                  { name: "Caffe Mocha", featured: true, price: "32K" }
+                ]
+              },
+              {
+                name: "Non-Coffee",
+                items: [
+                  { name: "French Choco", featured: true, price: "34K" },
+                  { name: "Kumai Matcha Latte", price: "35K" },
+                  { name: "Red Velvet Latte", featured: true, price: "35K" },
+                  { name: "Ube Taro Latte", price: "35K" },
+                  { name: "Lychee Tea", price: "33K" },
+                  { name: "Strawberry Tea", price: "33K" },
+                  { name: "Tropical Kiwi Fizz", price: "34K" },
+                  { name: "Lychee Fizz", price: "34K" },
+                  { name: "Strawberry Yoghurt Lush", price: "35K" },
+                  { name: "Mineral Water", price: "5K - 10K", note: "estimasi" }
+                ]
+              }
+            ]
+          }
+        ]
+      };
+
+      const menuLayout = document.getElementById("menu-layout");
+
+      menuLayout.innerHTML = data.categories.map((category) => `
+        <section class="menu-group">
+          <div class="eyebrow">${category.label}</div>
+          <div style="display:grid; gap:16px; margin-top:14px;">
+            ${category.groups.map((group) => `
+              <div>
+                <h3 style="margin-bottom:12px;">${group.name}</h3>
+                <div class="menu-items">
+                  ${group.items.map((item) => `
+                    <article class="menu-item">
+                      <div>
+                        <div class="menu-name">${item.name}${item.featured ? '<span class="badge">Populer</span>' : ''}</div>
+                        ${item.note ? `<p class="menu-note">${item.note}</p>` : ""}
+                      </div>
+                      <div class="price">${item.price}</div>
+                    </article>
+                  `).join("")}
+                </div>
+              </div>
+            `).join("")}
+          </div>
+        </section>
+      `).join("");
+    </script>
+  </body>
+  </html>
