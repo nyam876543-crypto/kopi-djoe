@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kopi Djoe | Premium Coffee Experience</title>
+    <meta
+      name="description"
+      content="Web app premium Kopi Djoe dengan menu digital, reservasi online, galeri, dan informasi lokasi."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="grain"></div>
+    <header class="topbar">
+      <a href="#home" class="brand">
+        <span class="brand-mark">KD</span>
+        <span>
+          <strong>Kopi Djoe</strong>
+          <small>More Than Coffee, More Than Hangout.</small>
+        </span>
+      </a>
+
+      <nav class="nav" aria-label="Navigasi utama">
+        <a href="#home">Home</a>
+        <a href="#tentang">Tentang</a>
+        <a href="#menu">Menu</a>
+        <a href="#galeri">Galeri</a>
+        <a href="#event">Event</a>
+        <a href="#testimoni">Testimoni</a>
+        <a href="#kontak">Kontak</a>
+      </nav>
+
+      <div class="topbar-actions">
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Ubah tema">
+          <span class="theme-toggle__dot"></span>
+          <span id="themeLabel">Dark Mode</span>
+        </button>
+        <a class="button button--ghost" id="ctaWhatsappTop" href="#kontak">WhatsApp</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero section" id="home">
+        <div class="hero__content">
+          <p class="eyebrow">Premium Coffee Shop di Margonda</p>
+          <h1 id="heroHeadline">Tempat Ngopi Favorit di Margonda</h1>
+          <p class="hero__lead" id="heroSubheadline"></p>
+
+          <div class="hero__rating">
+            <span>⭐⭐⭐⭐⭐</span>
+            <strong id="heroRating">4.9 Rating dari 1.058+ Ulasan</strong>
+          </div>
+
+          <div class="hero__meta">
+            <span id="heroLocation">📍 Jl. Margonda No.488, Depok</span>
+            <span id="heroHours">🕒 Buka Setiap Hari 11.00–22.00</span>
+          </div>
+
+          <div class="hero__cta">
+            <a class="button" href="#menu">Lihat Menu</a>
+            <a class="button button--secondary" href="#reservasi">Reservasi Sekarang</a>
+            <a class="button button--ghost" id="ctaWhatsappHero" href="#kontak">Hubungi WhatsApp</a>
+          </div>
+
+          <ul class="hero__badges" id="heroBadges" aria-label="Keunggulan utama"></ul>
+        </div>
+
+        <div class="hero__visual" aria-hidden="true">
+          <div class="hero-card hero-card--main">
+            <span class="pill">Cozy • Premium • Modern</span>
+            <h2>Industrial Warm Ambience</h2>
+            <p>
+              Nuansa premium dengan warna espresso, pencahayaan hangat, dan layout yang nyaman untuk
+              kerja, belajar, atau quality time.
+            </p>
+          </div>
+          <div class="hero-card hero-card--glass">
+            <span>☕ Signature Coffee</span>
+            <strong>Djoe's Carbana</strong>
+          </div>
+          <div class="hero-card hero-card--accent">
+            <span>🍽️ Best Seller</span>
+            <strong>Iga Hotplate</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--alt" aria-labelledby="highlightTitle">
+        <div class="section-heading">
+          <p class="eyebrow">Quick Highlight</p>
+          <h2 id="highlightTitle">Alasan pelanggan kembali lagi</h2>
+        </div>
+        <div class="highlight-grid" id="highlightGrid"></div>
+      </section>
+
+      <section class="section" id="tentang">
+        <div class="section-heading">
+          <p class="eyebrow">Tentang Kami</p>
+          <h2 id="aboutTitle"></h2>
+        </div>
+        <div class="about-panel">
+          <div>
+            <p id="aboutBody"></p>
+          </div>
+          <div class="about-stats">
+            <article>
+              <strong>1.058+</strong>
+              <span>Ulasan pelanggan</span>
+            </article>
+            <article>
+              <strong>11.00–23.00</strong>
+              <span>Jam operasional fleksibel</span>
+            </article>
+            <article>
+              <strong>WiFi Gratis</strong>
+              <span>Ideal untuk WFC dan tugas kuliah</span>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--alt" id="menu">
+        <div class="section-heading section-heading--split">
+          <div>
+            <p class="eyebrow">Digital Menu</p>
+            <h2>Menu interaktif Kopi Djoe</h2>
+          </div>
+          <div class="searchbox">
+            <label class="sr-only" for="menuSearch">Cari menu</label>
+            <input id="menuSearch" type="search" placeholder="Cari menu favorit..." />
+          </div>
+        </div>
+
+        <div class="menu-tabs" id="menuTabs" aria-label="Kategori menu"></div>
+        <div class="menu-sections" id="menuSections"></div>
+      </section>
+
+      <section class="section" aria-labelledby="bestSellerTitle">
+        <div class="section-heading">
+          <p class="eyebrow">Best Seller</p>
+          <h2 id="bestSellerTitle">Menu favorit pelanggan</h2>
+        </div>
+        <div class="best-seller-grid" id="bestSellerGrid"></div>
+      </section>
+
+      <section class="section section--alt" id="galeri">
+        <div class="section-heading">
+          <p class="eyebrow">Galeri</p>
+          <h2>Pinterest style masonry gallery</h2>
+        </div>
+        <div class="gallery-grid" id="galleryGrid"></div>
+      </section>
+
+      <section class="section" id="event">
+        <div class="section-heading">
+          <p class="eyebrow">Event & Reservasi</p>
+          <h2>Buat acara di Kopi Djoe</h2>
+        </div>
+
+        <div class="event-layout">
+          <div class="event-card">
+            <p class="eyebrow">Cocok untuk</p>
+            <ul class="check-list" id="eventList"></ul>
+          </div>
+
+          <form class="reservation-form" id="reservasi" novalidate>
+            <div class="form-heading">
+              <h3>Reservasi online</h3>
+              <p>Kirim detail acara Anda. Data akan tersimpan di backend aplikasi.</p>
+            </div>
+
+            <div class="form-grid">
+              <label>
+                Nama
+                <input name="name" type="text" placeholder="Nama lengkap" required />
+              </label>
+              <label>
+                No. WhatsApp
+                <input name="phone" type="tel" placeholder="08xxxxxxxxxx" required />
+              </label>
+              <label>
+                Tanggal
+                <input name="date" type="date" required />
+              </label>
+              <label>
+                Jam
+                <input name="time" type="time" required />
+              </label>
+              <label>
+                Jumlah tamu
+                <input name="guests" type="number" min="1" max="50" placeholder="Jumlah tamu" required />
+              </label>
+              <label>
+                Jenis acara
+                <select name="eventType" required>
+                  <option value="">Pilih acara</option>
+                  <option>Gathering komunitas</option>
+                  <option>Meeting kantor</option>
+                  <option>Birthday celebration</option>
+                  <option>Mini workshop</option>
+                  <option>Buka bersama</option>
+                  <option>Nonton bareng</option>
+                </select>
+              </label>
+            </div>
+
+            <label>
+              Catatan tambahan
+              <textarea name="notes" rows="4" placeholder="Contoh: butuh area indoor dekat colokan"></textarea>
+            </label>
+
+            <div class="form-actions">
+              <button class="button" type="submit">Reservasi Tempat Sekarang</button>
+              <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <section class="section section--alt" id="testimoni">
+        <div class="section-heading">
+          <p class="eyebrow">Testimoni</p>
+          <h2>Review pelanggan</h2>
+        </div>
+        <div class="testimonial-summary">
+          <span>⭐⭐⭐⭐⭐ 4.9/5</span>
+          <strong>Berdasarkan 1.058+ ulasan pelanggan</strong>
+        </div>
+        <div class="testimonial-grid" id="testimonialGrid"></div>
+      </section>
+
+      <section class="section" id="kontak">
+        <div class="section-heading">
+          <p class="eyebrow">Lokasi & Kontak</p>
+          <h2>Kunjungi Kami</h2>
+        </div>
+
+        <div class="contact-layout">
+          <div class="contact-card">
+            <h3>Alamat</h3>
+            <p id="contactAddress"></p>
+            <p id="contactPhone"></p>
+            <div class="contact-actions">
+              <a class="button" id="contactWhatsapp" href="#">WhatsApp</a>
+              <a class="button button--secondary" id="contactMaps" href="#" target="_blank" rel="noreferrer">Google Maps</a>
+              <a class="button button--ghost" id="contactInstagram" href="#" target="_blank" rel="noreferrer">Instagram</a>
+            </div>
+          </div>
+
+          <div class="hours-card">
+            <h3>Jam Operasional</h3>
+            <div class="hours-list" id="hoursList"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <a class="floating-whatsapp" id="floatingWhatsapp" href="#" aria-label="Hubungi WhatsApp">
+      <span>WhatsApp</span>
+    </a>
+
+    <footer class="footer">
+      <p>© <span id="currentYear"></span> Kopi Djoe. Premium, cozy, modern, dan instagramable.</p>
+    </footer>
+
+    <script src="/app.js" defer></script>
+  </body>
+</html>

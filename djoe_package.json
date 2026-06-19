@@ -1,0 +1,10 @@
+{
+  "name": "kopi-djoe-fullstack",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Web app full-stack premium untuk Kopi Djoe",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  }
+}
